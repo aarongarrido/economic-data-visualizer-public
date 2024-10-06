@@ -69,7 +69,8 @@
 
         async function fetchFREDData(seriesId, startDate, endDate) {
             const apiKey = 'eff699f03ba5779fba9a789d736d1787'; // Replace with your FRED API key
-            const response = await fetch(`https://api.stlouisfed.org/fred/series/observations?series_id=${seriesId}&api_key=${apiKey}&file_type=json&observation_start=${startDate}&observation_end=${endDate}`);
+            const corsProxy = 'https://cors-anywhere.herokuapp.com/';
+            const response = await fetch(`${corsProxy}https://api.stlouisfed.org/fred/series/observations?series_id=${seriesId}&api_key=${apiKey}&file_type=json&observation_start=${startDate}&observation_end=${endDate}`);
             const data = await response.json();
             return data.observations.map(obs => ({
                 date: obs.date,
